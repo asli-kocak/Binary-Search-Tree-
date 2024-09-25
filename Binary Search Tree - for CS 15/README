@@ -1,0 +1,136 @@
+/******************************************************************************
+* HW3: Binary Search Tree
+* Comp 15
+* README
+* Asli Kocak, Oct 2021
+*******************************************************************************
+
+Compile/run:
+     - Compile using
+            make
+     - run executable with
+            
+
+-------------------------------------------------------------------------------
+
+Program Purpose:
+
+This program is an implementation of a binary search tree of integers.
+Some important specifics of this particular binary search tree is that;
+    - It stores duplicates in the nodes, so if there are multiple of the same
+    number, it stores the number itself, and the count of that number
+    - It obeys by bst invariants (smallest value to the left, largest to the 
+      right)
+
+
+-------------------------------------------------------------------------------
+
+Acknowledgements: 
+All the TA's with their last minute help, and the bst simulator on the internet.
+Especially Nick Gravel for solving my last minute vscode bug, 
+And all of the nice office hour friends for moral support.
+
+-------------------------------------------------------------------------------
+
+Files: 
+    BinarySearchTree.cpp :main file that runs functions for bst
+    BinarySearchTree.h   :the headerfile for bst
+    hw3.cpp              :was provided by the assignment, 
+                         uses binary search tree to add, delete and copy trees
+    unit_tests.h         :testing for bst structure
+    Makefile             :makefile for the above files, the command make 
+                         is used for compliation
+
+
+-------------------------------------------------------------------------------
+Data Structures: 
+Binary search trees are data structures that are able to store data with 
+comparable values attached to them, such as integers, characters, strings 
+(in the case of c++) or any other values that have a key (a comparable value), 
+such as names with attached identification numbers. 
+
+Binary search trees are advantageous for searching for an element in a long 
+list, as they take logarithmic time to complete searches.
+
+It also speeds up the insertion and deletion operations in comparison to lists
+and allow for recursive implementation. 
+
+However, binary search trees might not be ideal if you are not comparing values
+and simply looking to store data, especially if your data is not sortable.
+-------------------------------------------------------------------------------
+Testing:
+    Unit Test:  I used unit tests to test every function except the copy 
+                constructor and assignment operator.
+                I created different functions for every functionality.
+                I tried test edge cases especially concerning the root (eg. 
+                when removing from the root, if the tree contains the root etc)
+
+    Diff Files: I used the main file to test the copy constructor and 
+                assignment operator. I diffed the file with the demo to 
+                make sure they were the same.
+                I lastly ran valgrind to make sure there weren't any memory 
+                leaks
+
+-------------------------------------------------------------------------------
+Questions from Homework Spec:
+
+    1- Review the remove function explanation in the homework specification. 
+    Will your implementation of the remove function use (the privately 
+    defined) find_min() or find_max()? Why?
+        I will use the smallest value in the right subtree to replace the deleted
+        node, so I think it makes more sense to call function find_min() on the 
+        subtree of the current node, and replace the node with that.
+
+    2- Is it possible for (the privately defined) find_min() or find_max() to
+    return a value that does not point to a valid node? Why or why not?
+        If passed in empty list (root is nullptr), it will seg fault
+        But no, it returns a valid node otherwise.
+
+        So yes, there will not be a valid value to return if the tree is  
+        empty, but it will not return an invalid node either, it will just 
+        have a segmentation fault
+
+    3- 
+
+        b) If you answered no to Q2, then then consider the tree below and
+        specify the node returned when find_min() is invoked on the
+        right child of the node with value of 5: 
+                                    2
+                                   / \
+                                  1   5
+                                 /   /
+                                0   4
+        The function will cause a segfault.
+            
+
+    4. Write pseudocode for your private find_min() function.
+        if node is empty, return nullptr
+        if left subtree is null, return node
+        else find_min(node->left)
+    5. Write pseudocode for your private find_max() function.
+        if node is empty, return nullptr
+        if right subtree is null, return node
+        else find_min(node->right)
+    6. Write pseudocode for your private post_order_delete() function.
+        if currrent node is nullptr, return
+        post_order_delete(left)
+        post_order_delete(right)
+        after deleting its subtrees; delete current node
+*****************************************************************************
+                     __________
+                    |  good    |       
+                    |  luck!   |
+                    | =^._.^=  |
+                    |__________|
+                    /□□□□□□□□□□ \
+                   /□□□□□□□□□□□□ \
+                  /     |__|      \
+*/
+
+
+
+
+
+
+
+
